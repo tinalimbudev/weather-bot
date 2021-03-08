@@ -1,0 +1,5 @@
+# VS Code configurations
+.vscode
+
+# Virtual environment
+weather_bot_venv
