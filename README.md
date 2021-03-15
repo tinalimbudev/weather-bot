@@ -1,4 +1,4 @@
-# WEATHER BOT
+# WEATHER BOT :sunny: :umbrella:
 
 Ask and you shall receive.
 
