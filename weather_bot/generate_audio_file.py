@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def generate_audio_file_from_text(
-  text, file_name, common=False, file_type="mp3", language="en", slow=False
+  text, file_name, common=True, file_type="mp3", language="en", slow=False
 ):
   audio = gTTS(text=text, lang=language, slow=slow)
   audio_file_path = os.path.join(
