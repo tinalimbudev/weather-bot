@@ -10,7 +10,7 @@ def generate_audio_file_from_text(
   audio = gTTS(text=text, lang=language, slow=slow)
   audio_file_path = os.path.join(
     Path().absolute(),
-    f"weather_bot/common_audio_responses/{file_name}.{file_type}",
+    f"weather_bot/media/common_audio_responses/{file_name}.{file_type}",
   )
   audio.save(audio_file_path)
 
