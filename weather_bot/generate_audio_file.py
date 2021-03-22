@@ -1,13 +1,18 @@
 import os
 
 from gtts import gTTS
+from pathlib import Path
 
 
 def generate_audio_file_from_text(
   text, file_name, file_type="mp3", language="en", slow=False
 ):
   audio = gTTS(text=text, lang=language, slow=slow)
-  audio.save(f"{file_name}.{file_type}")
+  audio_file_path = os.path.join(
+    Path().absolute(),
+    f"weather_bot/common_audio_responses/{file_name}.{file_type}",
+  )
+  audio.save(audio_file_path)
 
 
 if __name__ == "__main__":
