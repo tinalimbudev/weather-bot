@@ -3,7 +3,7 @@ import speech_recognition as sr
 
 from gtts import gTTS
 
-from responses import greet
+from responses import greet, beg_pardon
 
 
 def run_weather_bot():
@@ -13,18 +13,18 @@ def run_weather_bot():
     recognizer.adjust_for_ambient_noise(audio_source, duration=0.5)
     greet()
 
-    # while True:
-    #   listen_and_respond(audio_source, recognizer)
+    while True:  # TODO: Change?
+      listen_and_respond(audio_source, recognizer)
 
 
-# def listen_and_respond(audio_source, recognizer):
-#   audio = recognizer.listen(audio_source)
+def listen_and_respond(audio_source, recognizer):
+  audio = recognizer.listen(audio_source)
 
-#   try:
-#     transcription = recognizer.recognize_google(audio)
-#     print(transcription)  # TODO
-#   except sr.UnknownValueError:
-#     print("error")  # TODO
+  try:
+    transcription = recognizer.recognize_google(audio)
+    print(transcription)  # TODO
+  except sr.UnknownValueError:
+    beg_pardon()
 
 
 if __name__ == "__main__":
