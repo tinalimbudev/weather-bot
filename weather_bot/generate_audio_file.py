@@ -12,14 +12,17 @@ def generate_audio_file_from_text(
     Path().absolute(),
     "weather_bot",
     "media",
-    "common_audio_responses" if common else "audio_responses",
+    "common_responses" if common else "dynamic_responses",
     f"{file_name}.{file_type}",
   )
   audio.save(audio_file_path)
+  return audio_file_path
 
 
 if __name__ == "__main__":
-  texts_and_file_names = [("Please could you repeat that?", "pardon")]
+  # Replace with list of tuples.
+  # E.g. [("Please could you repeat that?", "pardon")]
+  texts_and_file_names = []
 
   for text, file_name in texts_and_file_names:
     generate_audio_file_from_text(text, file_name)
