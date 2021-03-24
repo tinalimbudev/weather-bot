@@ -14,6 +14,19 @@ def run_weather_bot():
     greet(name)
     today_or_not = ask_today_or_not(audio_source, recognizer)
 
+    if "today" in today_or_not:
+      pass
+
+    elif "different day" in today_or_not:
+      # TODO: Get date.
+      pass
+
+    else:
+      # TODO: Try to get today or a different date again.
+      pass
+
+    # TODO: Once we have date, try to get a time as well.
+    # TODO: Exit or do it again for a different date.
 
 if __name__ == "__main__":
   run_weather_bot()
