@@ -18,14 +18,14 @@ COMMON_RESPONSES = {
 
 
 def play_common_response(response_type):
-  audio_file_path = os.path.join(
+  file_path = os.path.join(
     Path().absolute(),
     "weather_bot",
     "media",
     "common_responses",
     COMMON_RESPONSES[response_type],
   )
-  playsound(audio_file_path)
+  playsound(file_path)
 
 
 greet = partial(
