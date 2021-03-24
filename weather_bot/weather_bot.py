@@ -1,10 +1,8 @@
-import os
 import speech_recognition as sr
 
-from gtts import gTTS
-
-from common_responses import hello, beg_pardon
+from common_responses import hello
 from dynamic_responses import greet
+from transcription import listen_and_transcribe
 
 
 def run_weather_bot():
@@ -16,16 +14,6 @@ def run_weather_bot():
     hello()
     name = listen_and_transcribe(audio_source, recognizer)
     greet(name)
-
-
-def listen_and_transcribe(audio_source, recognizer):
-  audio = recognizer.listen(audio_source)
-
-  try:
-    return recognizer.recognize_google(audio)
-  except sr.UnknownValueError:
-    beg_pardon()
-    return listen_and_transcribe(audio_source, recognizer)
 
 
 if __name__ == "__main__":
