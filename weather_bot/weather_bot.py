@@ -1,8 +1,6 @@
 import speech_recognition as sr
 
-from common_responses import hello
-from dynamic_responses import greet
-from transcription import listen_and_transcribe
+from response import hello, ask_name, greet, ask_today_or_not
 
 
 def run_weather_bot():
@@ -12,8 +10,9 @@ def run_weather_bot():
     recognizer.adjust_for_ambient_noise(audio_source, duration=0.5)
 
     hello()
-    name = listen_and_transcribe(audio_source, recognizer)
+    name = ask_name()
     greet(name)
+    today_or_not = ask_today_or_not()
 
 
 if __name__ == "__main__":
