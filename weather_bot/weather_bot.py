@@ -13,19 +13,18 @@ def run_weather_bot():
   with sr.Microphone() as audio_source:
     recognizer.adjust_for_ambient_noise(audio_source, duration=0.5)
     greet()
+    transcription = listen_and_transcribe(audio_source, recognizer)
+    # Respond.
 
-    while True:  # TODO: Change?
-      listen_and_respond(audio_source, recognizer)
 
-
-def listen_and_respond(audio_source, recognizer):
+def listen_and_transcribe(audio_source, recognizer):
   audio = recognizer.listen(audio_source)
 
   try:
-    transcription = recognizer.recognize_google(audio)
-    print(transcription)  # TODO
+    return recognizer.recognize_google(audio)
   except sr.UnknownValueError:
     beg_pardon()
+    return listen_and_transcribe(audio_source, recognizer)
 
 
 if __name__ == "__main__":
