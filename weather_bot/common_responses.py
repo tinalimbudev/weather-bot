@@ -28,7 +28,7 @@ def play_common_response(response_type):
   playsound(file_path)
 
 
-greet = partial(
+hello = partial(
   play_common_response, response_type=CommonResponseTypes.GREETING
 )
 beg_pardon = partial(

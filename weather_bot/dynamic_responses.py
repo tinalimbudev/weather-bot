@@ -15,3 +15,7 @@ def respond_dynamically(text):
   file_path = generate_audio_file_from_text(text, file_name, common=False)
   playsound(file_path)
   os.remove(file_path)
+
+
+def greet(name):
+  respond_dynamically(f"Nice to meet you {name}!")
