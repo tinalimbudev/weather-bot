@@ -7,13 +7,17 @@ from playsound import playsound
 
 
 class CommonResponseTypes(Enum):
-  GREETING = "greeting"
+  HELLO = "hello"
+  ASK_NAME = "ask_name"
   PARDON = "pardon"
+  TODAY_OR_NOT = "today_or_not"
 
 
 COMMON_RESPONSES = {
-  CommonResponseTypes.GREETING: "greeting.mp3",
-  CommonResponseTypes.PARDON: "pardon.mp3"
+  CommonResponseTypes.HELLO: "hello.mp3",
+  CommonResponseTypes.ASK_NAME: "ask_name.mp3",
+  CommonResponseTypes.PARDON: "pardon.mp3",
+  CommonResponseTypes.TODAY_OR_NOT: "today_or_not.mp3",
 }
 
 
@@ -29,8 +33,14 @@ def play_common_response(response_type):
 
 
 hello = partial(
-  play_common_response, response_type=CommonResponseTypes.GREETING
+  play_common_response, response_type=CommonResponseTypes.HELLO
+)
+as_name = partial(
+  play_common_response, response_type=CommonResponseTypes.ASK_NAME
 )
 beg_pardon = partial(
   play_common_response, response_type=CommonResponseTypes.PARDON
+)
+today_or_not = partial(
+  play_common_response, response_type=CommonResponseTypes.TODAY_OR_NOT
 )
