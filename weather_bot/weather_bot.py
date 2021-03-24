@@ -3,7 +3,8 @@ import speech_recognition as sr
 
 from gtts import gTTS
 
-from responses import greet, beg_pardon, respond_dynamically
+from common_audio_responses import greet, beg_pardon
+from dynamic_audio_responses import respond_dynamically
 
 
 def run_weather_bot():
