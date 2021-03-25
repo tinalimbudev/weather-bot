@@ -42,19 +42,6 @@ hello = partial(play_common_response, response_type=ResponseTypes.HELLO)
 beg_pardon = partial(play_common_response, response_type=ResponseTypes.PARDON)
 
 
-# TODO: Consolidate these ask_ functions.
-
-
-def ask_name(audio_source, recognizer):
-  play_common_response(ResponseTypes.ASK_NAME)
-  return listen_and_transcribe(audio_source, recognizer)
-
-
-def ask_today_or_not(audio_source, recognizer):
-  play_common_response(ResponseTypes.ASK_TODAY_OR_NOT)
-  return listen_and_transcribe(audio_source, recognizer)
-
-
 def listen_and_transcribe(audio_source, recognizer):
   audio = recognizer.listen(audio_source)
 
@@ -63,6 +50,23 @@ def listen_and_transcribe(audio_source, recognizer):
   except sr.UnknownValueError:
     beg_pardon()
     return listen_and_transcribe(audio_source, recognizer)
+
+
+def play_common_response_and_get_input(response_type, audio_source, recognizer):
+  play_common_response(response_type)
+  return listen_and_transcribe(audio_source, recognizer)
+
+
+def ask_name(audio_source, recognizer):
+  return play_common_response_and_get_input(
+    ResponseTypes.ASK_NAME, audio_source, recognizer
+  )
+
+
+def ask_today_or_not(audio_source, recognizer):
+  return play_common_response_and_get_input(
+    ResponseTypes.ASK_TODAY_OR_NOT, audio_source, recognizer
+  )
 
 
 def respond_dynamically(text):
