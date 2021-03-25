@@ -83,15 +83,19 @@ def greet(name):
 
 
 def report_weather_for_today():
-  # TODO: Improve and make this more flexible.
-  # TODO: Check if the variables are correct.
-  weather = get_weather_for_today()["main"]
-  temp = weather["temp"]
-  feels_like = weather["feels_like"]
-  temp_min = weather["temp_min"]
-  temp_max = weather["temp_max"]
+  data = get_weather_for_today()["main"]
+
+  temp = data["temp"]
+  feels_like = data["feels_like"]
+  pressure = data["pressure"]
+  humidity = data["humidity"]
+  temp_min = data["temp_min"]
+  temp_max = data["temp_max"]
+
+  # TODO: add units.
 
   respond_dynamically(
-    f"The temperature is {temp} and feels like {feels_like}. The pressure is "
-    f"{temp_min} and the humidity is {temp_max}."
+    f"The current temperature is {temp} and feels like {feels_like}. The "
+    f"pressure is {pressure} and the humidity is {humidity}. The coldest "
+    f"today will be is {temp_max}, and the warmest today will be is {temp_max}."
   )
