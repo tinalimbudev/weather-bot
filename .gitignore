@@ -6,3 +6,6 @@ weather_bot_venv
 
 # pycache
 __pycache__
+
+# Environment variables
+.env
