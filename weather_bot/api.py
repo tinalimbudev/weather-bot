@@ -14,10 +14,10 @@ CITY_TO_LAT_AND_LON = {
 }
 
 
-def get_weather_data(units="metric", city=LONDON):
+def get_weather_data(lang="en", units="metric", city=LONDON):
   lat, lon = CITY_TO_LAT_AND_LON_MAP.get(city, (LONDON_LAT, LONDON_LON))
   api_url = (
     f"https://api.openweathermap.org/data/2.5/onecall?appid={WEATHER_API_KEY}"
-    f"&units={units}&lat={lat}&lon={lon}"
+    f"&lang={lang}&units={units}&lat={lat}&lon={lon}"
   )
   return requests.get(api_url).json()
