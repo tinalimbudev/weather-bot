@@ -21,3 +21,19 @@ def get_weather_data(lang="en", units="metric", city=LONDON):
     f"&lang={lang}&units={units}&lat={lat}&lon={lon}&exclude=minutely,alerts"
   )
   return requests.get(api_url).json()
+
+
+# def report_current_weather():
+#   data = get_weather_data()
+
+#   weather = data["weather"]["main"]
+#   temp = data["main"]["temp"]
+#   feels_like = data["main"]["feels_like"]
+#   temp_min = data["main"]["temp_min"]
+#   temp_max = data["main"]["temp_max"]
+
+#   respond_dynamically(
+#     f"Today is looking {weather}. The current temperature is {temp} degrees "
+#     f"celcius and feels like {feels_like}. The coldest today will be is "
+#     f"{temp_min} degrees celcius, and the warmest today will be is {temp_max}."
+#   )
