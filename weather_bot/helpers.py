@@ -8,7 +8,6 @@ from pathlib import Path
 from playsound import playsound
 import speech_recognition as sr
 
-from api import get_current_weather
 from generate_audio_file import generate_audio_file_from_text
 
 
@@ -80,19 +79,3 @@ def respond_dynamically(text):
 
 def greet(name):
   respond_dynamically(f"Nice to meet you {name}!")
-
-
-def report_current_weather():
-  data = get_current_weather()
-
-  weather = data["weather"]["main"]
-  temp = data["main"]["temp"]
-  feels_like = data["main"]["feels_like"]
-  temp_min = data["main"]["temp_min"]
-  temp_max = data["main"]["temp_max"]
-
-  respond_dynamically(
-    f"Today is looking {weather}. The current temperature is {temp} degrees "
-    f"celcius and feels like {feels_like}. The coldest today will be is "
-    f"{temp_min} degrees celcius, and the warmest today will be is {temp_max}."
-  )
