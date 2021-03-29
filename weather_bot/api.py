@@ -23,6 +23,23 @@ def get_weather_data(lang="en", units="metric", city=LONDON):
   return requests.get(api_url).json()
 
 
+def get_current_weather(data):
+  current_data = data["current"]
+  temp = current_data["temp"]
+  feels_like = current_data["feels_like"]
+  return temp, feels_like
+
+
+def get_weather_after_some_hours(data, num_of_hours):
+  # TODO
+  return data
+
+
+def get_weather_after_some_days(data, num_of_days):
+  # TODO
+  return data
+
+
 # def report_current_weather():
 #   data = get_weather_data()
 
