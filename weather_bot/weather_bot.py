@@ -1,6 +1,6 @@
 import speech_recognition as sr
 
-from helpers import hello, ask_name, greet, ask_today_or_not, report_weather_for_today
+from helpers import hello, ask_name, greet, ask_today_or_not, report_current_weather
 
 
 def run_weather_bot():
@@ -15,7 +15,8 @@ def run_weather_bot():
     today_or_not = ask_today_or_not(audio_source, recognizer)
 
     if "today" in today_or_not:
-      report_weather_for_today()
+      # if now
+      report_current_weather()
 
     elif "different day" in today_or_not:
       # TODO: Get date.
