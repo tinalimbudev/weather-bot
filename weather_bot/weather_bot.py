@@ -17,17 +17,19 @@ def run_weather_bot():
     if "today" in today_or_not:
       # if now
       report_current_weather()
+      # if another time then get another time
 
     elif "different day" in today_or_not:
-      # TODO: Get date.
+      # Get date and time and get report
       pass
 
     else:
-      # TODO: Try to get today or a different date again.
+      # Try to get today or a different date again.
+      # try to get time again
       pass
 
-    # TODO: Once we have date, try to get a time as well.
-    # TODO: Exit or do it again for a different date.
+    # Check if they want a different query
+    # If not then exit
 
 
 if __name__ == "__main__":
