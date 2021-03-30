@@ -19,7 +19,7 @@ CITY_TO_LAT_AND_LON = {
 }
 
 
-def get_weather_data(lang="en", units="metric", city=Cities.london):
+def get_full_weather_data(lang="en", units="metric", city=Cities.london):
   call_dt = datetime.now().replace(minute=0, second=0, microsecond=0)
 
   api_key = config("WEATHER_API_KEY")
@@ -58,17 +58,5 @@ def get_weather_data_for_later_day(call_dt, daily_data, num_of_days):
       return None
 
 
-# def report_current_weather():
-#   data = get_weather_data()
-
-#   weather = data["weather"]["main"]
-#   temp = data["main"]["temp"]
-#   feels_like = data["main"]["feels_like"]
-#   temp_min = data["main"]["temp_min"]
-#   temp_max = data["main"]["temp_max"]
-
-#   respond_dynamically(
-#     f"Today is looking {weather}. The current temperature is {temp} degrees "
-#     f"celcius and feels like {feels_like}. The coldest today will be is "
-#     f"{temp_min} degrees celcius, and the warmest today will be is {temp_max}."
-#   )
+def extract_weather_data(data):
+  return data["temp"], data["feels_like"]
