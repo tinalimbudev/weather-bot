@@ -10,6 +10,8 @@ def query_weather_bot(audio_source, recognizer):
   hourly_data = data["hourly"]
   daily_data = data["daily"]
   today_or_not = ask_today_or_not(audio_source, recognizer)
+  # TODO: Check responses are expected else get response again.
+  # TODO: Only give extra info like forcast up to 12 hours the first time.
 
   if "today" in today_or_not:
     current_or_not = ask_current_or_not(audio_source, recognizer)
