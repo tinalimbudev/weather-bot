@@ -12,17 +12,19 @@ from generate_audio_file import generate_audio_file_from_text
 
 
 class ResponseTypes(Enum):
-  HELLO = "hello"
-  ASK_NAME = "ask_name"
-  PARDON = "pardon"
-  ASK_TODAY_OR_NOT = "ask_today_or_not"
+  ask_name = "ask_name"
+  ask_today_or_not = "ask_today_or_not"
+  goodbye = "goodbye"
+  hello = "hello"
+  pardon = "pardon"
 
 
 RESPONSE_FILES = {
-  ResponseTypes.HELLO: "hello.mp3",
-  ResponseTypes.ASK_NAME: "ask_name.mp3",
-  ResponseTypes.PARDON: "pardon.mp3",
-  ResponseTypes.ASK_TODAY_OR_NOT: "ask_today_or_not.mp3",
+  ResponseTypes.ask_name: "ask_name.mp3",
+  ResponseTypes.ask_today_or_not: "ask_today_or_not.mp3",
+  ResponseTypes.goodbye: "goodbye.mp3"
+  ResponseTypes.hello: "hello.mp3",
+  ResponseTypes.pardon: "pardon.mp3",
 }
 
 
@@ -37,8 +39,9 @@ def play_common_response(response_type):
   playsound(file_path)
 
 
-hello = partial(play_common_response, response_type=ResponseTypes.HELLO)
-beg_pardon = partial(play_common_response, response_type=ResponseTypes.PARDON)
+beg_pardon = partial(play_common_response, response_type=ResponseTypes.pardon)
+goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)  # TODO: Add audio.
+hello = partial(play_common_response, response_type=ResponseTypes.hello)
 
 
 def listen_and_transcribe(audio_source, recognizer):
@@ -58,13 +61,37 @@ def play_common_response_and_get_input(response_type, audio_source, recognizer):
 
 def ask_name(audio_source, recognizer):
   return play_common_response_and_get_input(
-    ResponseTypes.ASK_NAME, audio_source, recognizer
+    ResponseTypes.ask_name, audio_source, recognizer
   )
 
 
 def ask_today_or_not(audio_source, recognizer):
   return play_common_response_and_get_input(
-    ResponseTypes.ASK_TODAY_OR_NOT, audio_source, recognizer
+    ResponseTypes.ask_today_or_not, audio_source, recognizer
+  )
+
+
+def ask_current_or_not(audio_source, recognizer):
+  return play_common_response_and_get_input(
+    "", audio_source, recognizer
+  )
+
+
+def ask_how_many_hours(audio_source, recognizer):
+  return play_common_response_and_get_input(
+    "", audio_source, recognizer
+  )
+
+
+def ask_how_many_days(audio_source, recognizer):
+  return play_common_response_and_get_input(
+    "", audio_source, recognizer
+  )
+
+
+def ask_if_query_again(audio_source, recognizer):
+  return play_common_response_and_get_input(
+    "", audio_source, recognizer
   )
 
 
