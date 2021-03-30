@@ -12,6 +12,10 @@ from generate_audio_file import generate_audio_file_from_text
 
 
 class ResponseTypes(Enum):
+  ask_current_or_not = "ask_current_or_not"
+  ask_how_many_days = "ask_how_many_days"
+  ask_how_many_hours = "ask_how_many_hours"
+  ask_if_query_again = "ask_if_query_again"
   ask_name = "ask_name"
   ask_today_or_not = "ask_today_or_not"
   goodbye = "goodbye"
@@ -20,6 +24,10 @@ class ResponseTypes(Enum):
 
 
 RESPONSE_FILES = {
+  ResponseTypes.ask_current_or_not = "ask_current_or_not.mp3"
+  ResponseTypes.ask_how_many_days = "ask_how_many_days.mp3"
+  ResponseTypes.ask_how_many_hours = "ask_how_many_hours.mp3"
+  ResponseTypes.ask_if_query_again = "ask_if_query_again.mp3",
   ResponseTypes.ask_name: "ask_name.mp3",
   ResponseTypes.ask_today_or_not: "ask_today_or_not.mp3",
   ResponseTypes.goodbye: "goodbye.mp3"
@@ -40,7 +48,7 @@ def play_common_response(response_type):
 
 
 beg_pardon = partial(play_common_response, response_type=ResponseTypes.pardon)
-goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)  # TODO: Add audio.
+goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)
 hello = partial(play_common_response, response_type=ResponseTypes.hello)
 
 
@@ -73,25 +81,25 @@ def ask_today_or_not(audio_source, recognizer):
 
 def ask_current_or_not(audio_source, recognizer):
   return play_common_response_and_get_input(
-    "", audio_source, recognizer
+    ResponseTypes.ask_current_or_not, audio_source, recognizer
   )
 
 
 def ask_how_many_hours(audio_source, recognizer):
   return play_common_response_and_get_input(
-    "", audio_source, recognizer
+    ResponseTypes.ask_how_many_hours, audio_source, recognizer
   )
 
 
 def ask_how_many_days(audio_source, recognizer):
   return play_common_response_and_get_input(
-    "", audio_source, recognizer
+    ResponseTypes.ask_how_many_days, audio_source, recognizer
   )
 
 
 def ask_if_query_again(audio_source, recognizer):
   return play_common_response_and_get_input(
-    "", audio_source, recognizer
+    ResponseTypes.ask_if_query_again, audio_source, recognizer
   )
 
 
