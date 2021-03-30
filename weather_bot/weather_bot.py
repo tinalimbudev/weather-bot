@@ -49,7 +49,10 @@ def run_weather_bot():
 
     while query:
       query_weather_bot(audio_source, recognizer)
-      query = ask_if_query_again(audio_source, recognizer)
+      query_again = ask_if_query_again(audio_source, recognizer)
+
+      if "no" in query_again:
+        query = False
 
     goodbye()
 
