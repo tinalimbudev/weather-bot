@@ -79,3 +79,24 @@ def respond_dynamically(text):
 
 def greet(name):
   respond_dynamically(f"Nice to meet you {name}!")
+
+
+def report_current_weather(temp, feels_like):
+  respond_dynamically(
+    f"The current temperature is {temp} degrees celcius and feels like "
+    f"{feels_like} degrees celcius."
+  )
+
+
+def report_weather_for_later_time(temp, feels_like):
+  respond_dynamically(
+    f"The temperature at the time that you requested will be {temp} degrees "
+    f"celcius and it will feel like {feels_like} degrees celcius."
+  )
+
+
+def report_weather_for_later_day(temp, feels_like):
+  respond_dynamically(
+    f"The temperature at the day that you requested will be {temp} degrees "
+    f"celcius and it will feel like {feels_like} degrees celcius."
+  )
