@@ -1,7 +1,7 @@
 import speech_recognition as sr
 
 from api import get_full_weather_data, extract_weather_data
-from helpers import hello, ask_name, greet, ask_today_or_not, report_current_weather, ask_current_or_not, ask_how_many_hours, ask_how_many_days, get_weather_data_for_later_time, report_weather_for_later_time, get_weather_data_for_later_day, report_weather_for_later_day, ask_if_query_again
+from helpers import hello, ask_name, greet, ask_today_or_not, report_current_weather, ask_current_or_not, ask_how_many_hours, ask_how_many_days, get_weather_data_for_later_time, report_weather_for_later_time, get_weather_data_for_later_day, report_weather_for_later_day, ask_if_query_again, goodbye
 
 
 def query_weather_bot(audio_source, recognizer):
@@ -51,7 +51,7 @@ def run_weather_bot():
       query_weather_bot(audio_source, recognizer)
       query = ask_if_query_again(audio_source, recognizer)
 
-    # TODO: Say goodbye.
+    goodbye()
 
 
 if __name__ == "__main__":
