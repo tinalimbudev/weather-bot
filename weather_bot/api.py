@@ -2,22 +2,28 @@ import requests
 
 from datetime import datetime, timedelta
 from decouple import config
+from enum import Enum
 
 
-WEATHER_API_KEY = config("WEATHER_API_KEY")
+class Cities(Enum):
+  kathmandu = "Kathmandu"
+  london = "London"
+  porto = "Porto"
 
-LONDON = "London"
+
 LONDON_LAT = 51.507351
 LONDON_LON = -0.127758
 
 CITY_TO_LAT_AND_LON = {
-  LONDON: (LONDON_LAT, LONDON_LON),
+  Cities.kathmandu: (27.717245, 85.323959),
+  Cities.london: (LONDON_LAT, LONDON_LON),
 }
 
 
 def get_weather_data(lang="en", units="metric", city=LONDON):
-  call_dt = datetime.now().replace(microsecond=0)
+  call_dt = datetime.now().replace(minute=0, second=0, microsecond=0)
 
+  api_key = config("WEATHER_API_KEY")
   lat, lon = CITY_TO_LAT_AND_LON.get(city, (LONDON_LAT, LONDON_LON))
   api_url = (
     f"https://api.openweathermap.org/data/2.5/onecall?appid={WEATHER_API_KEY}"
