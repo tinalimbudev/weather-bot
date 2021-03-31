@@ -11,6 +11,15 @@ import speech_recognition as sr
 from generate_audio_file import generate_audio_file_from_text
 
 
+class QueryOptions(Enum):
+  today = "today"
+  different_day = "different_day"
+  current_time = "current"
+  different_time = "different time"
+  query_again = "yes"
+  do_not_query_again = "no"
+
+
 class ResponseTypes(Enum):
   ask_current_or_not = "ask_current_or_not"
   ask_how_many_days = "ask_how_many_days"
@@ -96,7 +105,7 @@ def ask_name(audio_source, recognizer):
 def ask_today_or_not(expected_responses, audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_today_or_not,
-    expected_responses,
+    [QueryOptions.today, QueryOptions.different_day],
     audio_source,
     recognizer,
   )
@@ -105,7 +114,7 @@ def ask_today_or_not(expected_responses, audio_source, recognizer):
 def ask_current_or_not(expected_responses, audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_current_or_not,
-    expected_responses,
+    [QueryOptions.current_time, QueryOptions.different_time],
     audio_source,
     recognizer,
   )
@@ -114,7 +123,7 @@ def ask_current_or_not(expected_responses, audio_source, recognizer):
 def ask_how_many_hours(expected_responses, audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_how_many_hours,
-    expected_responses,
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     audio_source,
     recognizer,
   )
@@ -123,7 +132,7 @@ def ask_how_many_hours(expected_responses, audio_source, recognizer):
 def ask_how_many_days(expected_responses, audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_how_many_days,
-    expected_responses,
+    [1, 2, 3, 4, 5, 6, 7],
     audio_source,
     recognizer,
   )
