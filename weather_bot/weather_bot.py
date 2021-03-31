@@ -20,7 +20,7 @@ def run_weather_bot():
       query_weather_bot(call_dt, data, audio_source, recognizer)
       query_again = ask_if_query_again(audio_source, recognizer)
 
-      if QueryOptions.do_not_query_again in query_again:
+      if QueryOptions.do_not_query_again.value in query_again:
         query = False
 
     goodbye()
@@ -29,17 +29,17 @@ def run_weather_bot():
 def query_weather_bot(call_dt, data, audio_source, recognizer):
   today_or_not = ask_today_or_not(audio_source, recognizer)
 
-  if QueryOptions.today in today_or_not:
+  if QueryOptions.today.value in today_or_not:
     current_or_not = ask_current_or_not(audio_source, recognizer)
 
-    if QueryOptions.current_time in current_or_not:
+    if QueryOptions.current_time.value in current_or_not:
       query_current_weather(data)
 
-    elif QueryOptions.different_time in current_or_not:
+    elif QueryOptions.different_time.value in current_or_not:
       num_of_hours = ask_how_many_hours(audio_source, recognizer)
       query_weather_for_later_time(data, num_of_hours)
 
-  elif QueryOptions.different_day in today_or_not:
+  elif QueryOptions.different_day.value in today_or_not:
     num_of_days = ask_how_many_days(audio_source, recognizer)
     query_weather_for_later_day(data, num_of_days)
 

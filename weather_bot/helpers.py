@@ -87,6 +87,8 @@ def get_expected_input(expected_inputs, audio_source, recognizer):
   if not any([i in input for i in expected_inputs]):
     invalid_input()
     return get_expected_input(expected_inputs, audio_source, recognizer)
+  else:
+    return input
 
 
 def play_common_response_and_get_expected_input(
@@ -105,7 +107,7 @@ def ask_name(audio_source, recognizer):
 def ask_today_or_not(audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_today_or_not,
-    [QueryOptions.today, QueryOptions.different_day],
+    [QueryOptions.today.value, QueryOptions.different_day.value],
     audio_source,
     recognizer,
   )
@@ -114,7 +116,7 @@ def ask_today_or_not(audio_source, recognizer):
 def ask_current_or_not(audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_current_or_not,
-    [QueryOptions.current_time, QueryOptions.different_time],
+    [QueryOptions.current_time.value, QueryOptions.different_time.value],
     audio_source,
     recognizer,
   )
@@ -141,7 +143,7 @@ def ask_how_many_days(audio_source, recognizer):
 def ask_if_query_again(audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_if_query_again,
-    [QueryOptions.query_again, QueryOptions.do_not_query_again],
+    [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
     audio_source,
     recognizer,
   )
