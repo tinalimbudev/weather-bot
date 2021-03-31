@@ -125,7 +125,7 @@ def ask_current_or_not(audio_source, recognizer):
 def ask_how_many_hours(audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_how_many_hours,
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"],
     audio_source,
     recognizer,
   )
@@ -134,7 +134,7 @@ def ask_how_many_hours(audio_source, recognizer):
 def ask_how_many_days(audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_how_many_days,
-    [1, 2, 3, 4, 5, 6, 7],
+    ["one", "two", "three", "four", "five", "six", "seven"],
     audio_source,
     recognizer,
   )
