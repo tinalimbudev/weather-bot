@@ -20,6 +20,7 @@ class ResponseTypes(Enum):
   ask_today_or_not = "ask_today_or_not"
   goodbye = "goodbye"
   hello = "hello"
+  invalid_input = "invalid_input"
   pardon = "pardon"
 
 
@@ -32,6 +33,7 @@ RESPONSE_FILES = {
   ResponseTypes.ask_today_or_not: "ask_today_or_not.mp3",
   ResponseTypes.goodbye: "goodbye.mp3",
   ResponseTypes.hello: "hello.mp3",
+  ResponseTypes.invalid_input: "invalid_input.mp3",
   ResponseTypes.pardon: "pardon.mp3",
 }
 
@@ -50,6 +52,9 @@ def play_common_response(response_type):
 beg_pardon = partial(play_common_response, response_type=ResponseTypes.pardon)
 goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)
 hello = partial(play_common_response, response_type=ResponseTypes.hello)
+invalid_input = partial(
+  play_common_response, response_type=ResponseTypes.invalid_input
+)
 
 
 def listen_and_transcribe(audio_source, recognizer):
@@ -65,6 +70,21 @@ def listen_and_transcribe(audio_source, recognizer):
 def play_common_response_and_get_input(response_type, audio_source, recognizer):
   play_common_response(response_type)
   return listen_and_transcribe(audio_source, recognizer)
+
+
+def get_expected_input(expected_inputs, audio_source, recognizer):
+  input = listen_and_transcribe(audio_source, recognizer)
+
+  if not any([i in input for i in expected_inputs]):
+    invalid_input()
+    return get_expected_input(expected_inputs, audio_source, recognizer)
+
+
+def play_common_response_and_get_expected_input(
+  response_type, expected_inputs, audio_source, recognizer
+):
+  play_common_response(response_type)
+  return get_expected_input(expected_inputs, audio_source, recognizer)
 
 
 def ask_name(audio_source, recognizer):
