@@ -93,33 +93,48 @@ def ask_name(audio_source, recognizer):
   )
 
 
-def ask_today_or_not(audio_source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_today_or_not, audio_source, recognizer
+def ask_today_or_not(expected_responses, audio_source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_today_or_not,
+    expected_responses,
+    audio_source,
+    recognizer,
   )
 
 
-def ask_current_or_not(audio_source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_current_or_not, audio_source, recognizer
+def ask_current_or_not(expected_responses, audio_source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_current_or_not,
+    expected_responses,
+    audio_source,
+    recognizer,
   )
 
 
-def ask_how_many_hours(audio_source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_how_many_hours, audio_source, recognizer
+def ask_how_many_hours(expected_responses, audio_source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_how_many_hours,
+    expected_responses,
+    audio_source,
+    recognizer,
   )
 
 
-def ask_how_many_days(audio_source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_how_many_days, audio_source, recognizer
+def ask_how_many_days(expected_responses, audio_source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_how_many_days,
+    expected_responses,
+    audio_source,
+    recognizer,
   )
 
 
-def ask_if_query_again(audio_source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_if_query_again, audio_source, recognizer
+def ask_if_query_again(expected_responses, audio_source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_if_query_again,
+    expected_responses,
+    audio_source,
+    recognizer,
   )
 
 

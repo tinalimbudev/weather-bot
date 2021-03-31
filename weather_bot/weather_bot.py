@@ -4,6 +4,14 @@ from api import get_full_weather_data, extract_weather_data, get_weather_data_fo
 from helpers import hello, ask_name, greet, ask_today_or_not, report_current_weather, ask_current_or_not, ask_how_many_hours, ask_how_many_days, report_weather_for_later_time, report_weather_for_later_day, ask_if_query_again, goodbye
 
 
+TODAY = "today"
+DIFFERENT_DAY = "different_day"
+CURRENT = "current"
+DIFFERENT_TIME = "different time"
+YES = "yes"
+NO = "no"
+
+
 def run_weather_bot():
   recognizer = sr.Recognizer()
 
@@ -18,18 +26,12 @@ def run_weather_bot():
 
     while query:
       query_weather_bot(call_dt, data, audio_source, recognizer)
-      query_again = ask_if_query_again(audio_source, recognizer)
+      query_again = ask_if_query_again([YES, NO], audio_source, recognizer)
 
-      if "no" in query_again:
+      if NO in query_again:
         query = False
 
     goodbye()
-
-
-TODAY = "today"
-DIFFERENT_DAY = "different_day"
-CURRENT = "current"
-DIFFERENT_TIME = "different time"
 
 
 def query_weather_bot(call_dt, data, audio_source, recognizer):
@@ -46,13 +48,17 @@ def query_weather_bot(call_dt, data, audio_source, recognizer):
       query_current_weather(data)
 
     elif DIFFERENT_TIME in current_or_not:
-      num_of_hours = ask_how_many_hours(audio_source, recognizer)
-      # TODO: Handle invalid number of hours
+      num_of_hours = ask_how_many_hours(
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        audio_source,
+        recognizer,
+      )
       query_weather_for_later_time(data, num_of_hours)
 
   elif DIFFERENT_DAY in today_or_not:
-    num_of_days = ask_how_many_days(audio_source, recognizer)
-    # TODO: Handle invalid number of days
+    num_of_days = ask_how_many_days(
+      [1, 2, 3, 4, 5, 6, 7], audio_source, recognizer
+    )
     query_weather_for_later_day(data, num_of_days)
 
 
