@@ -141,7 +141,7 @@ def ask_how_many_days(expected_responses, audio_source, recognizer):
 def ask_if_query_again(expected_responses, audio_source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_if_query_again,
-    expected_responses,
+    [QueryOptions.query_again, QueryOptions.do_not_query_again],
     audio_source,
     recognizer,
   )

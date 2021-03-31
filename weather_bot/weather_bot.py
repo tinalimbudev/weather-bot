@@ -18,7 +18,7 @@ def run_weather_bot():
 
     while query:
       query_weather_bot(call_dt, data, audio_source, recognizer)
-      query_again = ask_if_query_again([YES, NO], audio_source, recognizer)
+      query_again = ask_if_query_again(audio_source, recognizer)
 
       if QueryOptions.do_not_query_again in query_again:
         query = False
