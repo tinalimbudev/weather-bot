@@ -26,21 +26,31 @@ def run_weather_bot():
     goodbye()
 
 
+TODAY = "today"
+DIFFERENT_DAY = "different_day"
+CURRENT = "current"
+DIFFERENT_TIME = "different time"
+
+
 def query_weather_bot(call_dt, data, audio_source, recognizer):
-  today_or_not = ask_today_or_not(audio_source, recognizer)
+  today_or_not = ask_today_or_not(
+    [TODAY, DIFFERENT_DAY], audio_source, recognizer
+  )
 
-  if "today" in today_or_not:
-    current_or_not = ask_current_or_not(audio_source, recognizer)
+  if TODAY in today_or_not:
+    current_or_not = ask_current_or_not(
+      [CURRENT, DIFFERENT_TIME] audio_source, recognizer
+    )
 
-    if "current" in current_or_not:
+    if CURRENT in current_or_not:
       query_current_weather(data)
 
-    elif "different time" in current_or_not:
+    elif DIFFERENT_TIME in current_or_not:
       num_of_hours = ask_how_many_hours(audio_source, recognizer)
       # TODO: Handle invalid number of hours
       query_weather_for_later_time(data, num_of_hours)
 
-  elif "different day" in today_or_not:
+  elif DIFFERENT_DAY in today_or_not:
     num_of_days = ask_how_many_days(audio_source, recognizer)
     # TODO: Handle invalid number of days
     query_weather_for_later_day(data, num_of_days)
