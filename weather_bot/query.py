@@ -52,9 +52,20 @@ def query_current_weather(data):
 
 def query_weather_for_later_time(call_dt, data, num_of_hours):
   data = extract_weather_data_for_later_time(call_dt, data, num_of_hours)
-  report_weather_for_later_time(data["temp"])
+
+  if data is None:
+    # TODO
+    pass
+  else:
+    report_weather_for_later_time(data["temp"])
 
 
 def query_weather_for_later_day(call_dt, data, num_of_days):
-  temp = extract_weather_data_for_later_day(call_dt, data, num_of_days)["temp"]
-  report_weather_for_later_day(temp["day"], temp["eve"])
+  data = extract_weather_data_for_later_day(call_dt, data, num_of_days)
+
+  if data is None:
+    # TODO
+    pass
+  else:
+    temp = data["temp"]
+    report_weather_for_later_day(temp["day"], temp["eve"])
