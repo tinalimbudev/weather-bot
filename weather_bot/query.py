@@ -10,6 +10,7 @@ from response import (
   ask_how_many_hours,
   ask_if_current_time_or_different,
   ask_if_today_or_different_day,
+  missing_data,
   report_current_weather,
   report_weather_for_later_day,
   report_weather_for_later_time,
@@ -54,8 +55,7 @@ def query_weather_for_later_time(call_dt, data, num_of_hours):
   data = extract_weather_data_for_later_time(call_dt, data, num_of_hours)
 
   if data is None:
-    # TODO
-    pass
+    missing_data()
   else:
     report_weather_for_later_time(data["temp"])
 
@@ -64,8 +64,7 @@ def query_weather_for_later_day(call_dt, data, num_of_days):
   data = extract_weather_data_for_later_day(call_dt, data, num_of_days)
 
   if data is None:
-    # TODO
-    pass
+    missing_data()
   else:
     temp = data["temp"]
     report_weather_for_later_day(temp["day"], temp["eve"])

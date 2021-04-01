@@ -21,6 +21,7 @@ class ResponseTypes(Enum):
   goodbye = "goodbye"
   hello = "hello"
   invalid_input = "invalid_input"
+  missing_data = "missing_data"
   pardon = "pardon"
 
 
@@ -34,6 +35,7 @@ RESPONSE_FILES = {
   ResponseTypes.goodbye: "goodbye.mp3",
   ResponseTypes.hello: "hello.mp3",
   ResponseTypes.invalid_input: "invalid_input.mp3",
+  ResponseTypes.missing_data: "missing_data.mp3",
   ResponseTypes.pardon: "pardon.mp3",
 }
 
@@ -52,6 +54,9 @@ def play_common_response(response_type):
 beg_pardon = partial(play_common_response, response_type=ResponseTypes.pardon)
 flag_invalid_input = partial(
   play_common_response, response_type=ResponseTypes.invalid_input
+)
+missing_data = partial(
+  play_common_response, response_type=ResponseTypes.missing_data
 )
 say_goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)
 say_hello = partial(play_common_response, response_type=ResponseTypes.hello)
