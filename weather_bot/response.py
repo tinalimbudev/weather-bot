@@ -45,3 +45,35 @@ flag_invalid_input = partial(
 )
 say_goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)
 say_hello = partial(play_common_response, response_type=ResponseTypes.hello)
+
+
+def get_input(source, recognizer):
+  audio = recognizer.listen(source)
+
+  try:
+    return recognizer.recognize_google(audio)
+  except sr.UnknownValueError:
+    beg_pardon()
+    return get_input(source, recognizer)
+
+
+def get_expected_input(expected_inputs, source, recognizer):
+  input = get_input(source, recognizer)
+
+  if not any([i in input for i in expected_inputs]):
+    invalid_input()
+    return get_expected_input(expected_inputs, source, recognizer)
+  else:
+    return input
+
+
+def play_common_response_and_get_input(response_type, source, recognizer):
+  play_common_response(response_type)
+  return get_input(source, recognizer)
+
+
+def play_common_response_and_get_expected_input(
+  response_type, expected_inputs, source, recognizer
+):
+  play_common_response(response_type)
+  return get_expected_input(expected_inputs, source, recognizer)

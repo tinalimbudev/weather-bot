@@ -20,19 +20,6 @@ class QueryOptions(Enum):
   do_not_query_again = "no"
 
 
-
-def play_common_response_and_get_input(response_type, audio_source, recognizer):
-  play_common_response(response_type)
-  return listen_and_transcribe(audio_source, recognizer)
-
-
-def play_common_response_and_get_expected_input(
-  response_type, expected_inputs, audio_source, recognizer
-):
-  play_common_response(response_type)
-  return get_expected_input(expected_inputs, audio_source, recognizer)
-
-
 def ask_name(audio_source, recognizer):
   return play_common_response_and_get_input(
     ResponseTypes.ask_name, audio_source, recognizer
