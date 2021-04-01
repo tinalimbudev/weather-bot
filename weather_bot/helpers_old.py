@@ -66,29 +66,9 @@ invalid_input = partial(
 )
 
 
-def listen_and_transcribe(audio_source, recognizer):
-  audio = recognizer.listen(audio_source)
-
-  try:
-    return recognizer.recognize_google(audio)
-  except sr.UnknownValueError:
-    beg_pardon()
-    return listen_and_transcribe(audio_source, recognizer)
-
-
 def play_common_response_and_get_input(response_type, audio_source, recognizer):
   play_common_response(response_type)
   return listen_and_transcribe(audio_source, recognizer)
-
-
-def get_expected_input(expected_inputs, audio_source, recognizer):
-  input = listen_and_transcribe(audio_source, recognizer)
-
-  if not any([i in input for i in expected_inputs]):
-    invalid_input()
-    return get_expected_input(expected_inputs, audio_source, recognizer)
-  else:
-    return input
 
 
 def play_common_response_and_get_expected_input(
