@@ -8,6 +8,7 @@ from playsound import playsound
 import speech_recognition as sr
 
 from generate_audio_files import generate_audio_file_from_text
+from query import QueryOptions
 
 
 class ResponseTypes(Enum):
@@ -57,7 +58,9 @@ flag_invalid_input = partial(
 missing_data = partial(
   play_common_response, response_type=ResponseTypes.missing_data
 )
-say_goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)
+say_goodbye = partial(
+  play_common_response, response_type=ResponseTypes.goodbye
+)
 say_hello = partial(play_common_response, response_type=ResponseTypes.hello)
 
 
@@ -81,7 +84,7 @@ ask_name = partial(
 )
 
 
-def get_expected_input(expected_inputs, source, recognizer, numerical=False):
+def get_expected_input(source, recognizer, expected_inputs, numerical=False):
   input = get_input(source, recognizer)
 
   if numerical and any([i == input for i in expected_inputs]):
@@ -96,65 +99,41 @@ def get_expected_input(expected_inputs, source, recognizer, numerical=False):
 
 
 def play_common_response_and_get_expected_input(
-  response_type, expected_inputs, source, recognizer, numerical=False
+  source, recognizer, response_type, expected_inputs, numerical=False
 ):
   play_common_response(response_type)
   return get_expected_input(
-    expected_inputs, source, recognizer, numerical=numerical
+    source, recognizer, expected_inputs, numerical=numerical
   )
 
 
-def ask_if_today_or_different_day(source, recognizer):
-  from query import QueryOptions
-
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_if_today,
-    [QueryOptions.today.value, QueryOptions.different_day.value],
-    source,
-    recognizer,
-  )
-
-
-def ask_if_now_or_later(source, recognizer):
-  from query import QueryOptions
-
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_if_now_or_later,
-    [QueryOptions.now.value, QueryOptions.later.value],
-    source,
-    recognizer,
-  )
-
-
-def ask_how_many_hours(source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_how_many_hours,
-    [str(i) for i in range(1, 13)],
-    source,
-    recognizer,
-    numerical=True,
-  )
-
-
-def ask_how_many_days(source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_how_many_days,
-    [str(i) for i in range(1, 8)],
-    source,
-    recognizer,
-    numerical=True,
-  )
-
-
-def ask_if_query_again(source, recognizer):
-  from query import QueryOptions
-
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_if_query_again,
-    [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
-    source,
-    recognizer,
-  )
+ask_if_today_or_different_day = partial(
+  play_common_response_and_get_expected_input,
+  response_type=ResponseTypes.ask_if_today,
+  expected_inputs=[QueryOptions.today.value, QueryOptions.different_day.value],
+)
+ask_if_now_or_later = partial(
+  play_common_response_and_get_expected_input,
+  response_type=ResponseTypes.ask_if_now_or_later,
+  expected_inputs=[QueryOptions.now.value, QueryOptions.later.value],
+)
+ask_how_many_hours = partial(
+  play_common_response_and_get_expected_input,
+  response_type=ResponseTypes.ask_how_many_hours,
+  expected_inputs=[str(i) for i in range(1, 13)],
+  numerical=True,
+)
+ask_how_many_days = partial(
+  play_common_response_and_get_expected_input,
+  response_type=ResponseTypes.ask_how_many_days,
+  expected_inputs=[str(i) for i in range(1, 8)],
+  numerical=True,
+)
+ask_if_query_again = partial(
+  play_common_response_and_get_expected_input,
+  response_type=ResponseTypes.ask_if_query_again,
+  expected_inputs=[QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
+)
 
 
 def respond_dynamically(text):
