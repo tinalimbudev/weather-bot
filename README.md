@@ -1,9 +1,12 @@
 # WEATHER BOT :sunny: :umbrella:
 
-Ask and you shall receive.
+Ask this helpful Weather Bot to see if you need to grab your sunnies or an 
+umbrella before heading out.
 
-This helpful bot will let you know what the weather forecast is looking like and whether you'll need your sunnies or an umbrella.
+It can tell you about the current weather, the weather later today (for up to 
+12 hours), or the weather for this upcoming week (for up to 7 days).
 
 ## Dependencies
 
-This app requires PyAudio and uses Python 3.6.8 in order to make it work (see https://people.csail.mit.edu/hubert/pyaudio/).
+This app requires PyAudio and therefore uses Python 3.6.8 
+(see https://people.csail.mit.edu/hubert/pyaudio/).
