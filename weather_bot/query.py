@@ -3,6 +3,7 @@ from enum import Enum
 from api import (
   extract_weather_data_for_later_day,
   extract_weather_data_for_later_time,
+  get_weather_data,
 )
 from response import (
   ask_how_many_days,
@@ -25,6 +26,7 @@ class QueryOptions(Enum):
 
 
 def query_weather_bot(call_dt, data, source, recognizer):
+  call_dt, data = get_weather_data()
   today_or_not = ask_if_today_or_different_day(source, recognizer)
 
   if QueryOptions.today.value in today_or_not:
