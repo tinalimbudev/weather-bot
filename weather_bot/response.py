@@ -13,7 +13,7 @@ from generate_audio_files import generate_audio_file_from_text
 class ResponseTypes(Enum):
   ask_how_many_days = "ask_how_many_days"
   ask_how_many_hours = "ask_how_many_hours"
-  ask_if_current_time = "ask_if_current_time"
+  ask_if_now_or_later = "ask_if_now_or_later"
   ask_if_query_again = "ask_if_query_again"
   ask_if_today = "ask_if_today"
   ask_name = "ask_name"
@@ -27,7 +27,7 @@ class ResponseTypes(Enum):
 RESPONSE_FILES = {
   ResponseTypes.ask_how_many_days: "ask_how_many_days.mp3",
   ResponseTypes.ask_how_many_hours: "ask_how_many_hours.mp3",
-  ResponseTypes.ask_if_current_time: "ask_if_current_time.mp3",
+  ResponseTypes.ask_if_now_or_later: "ask_if_now_or_later.mp3",
   ResponseTypes.ask_if_query_again: "ask_if_query_again.mp3",
   ResponseTypes.ask_if_today: "ask_if_today.mp3",
   ResponseTypes.ask_name: "ask_name.mp3",
@@ -110,12 +110,12 @@ def ask_if_today_or_different_day(source, recognizer):
   )
 
 
-def ask_if_current_time_or_different(source, recognizer):
+def ask_if_now_or_later(source, recognizer):
   from query import QueryOptions
 
   return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_if_current_time,
-    [QueryOptions.current_time.value, QueryOptions.different_time.value],
+    ResponseTypes.ask_if_now_or_later,
+    [QueryOptions.now.value, QueryOptions.later.value],
     source,
     recognizer,
   )
