@@ -5,18 +5,18 @@ from pathlib import Path
 
 
 def generate_audio_file_from_text(
-  text, file_name, common=True, file_type="mp3", language="en", slow=False
+  text, file_name, file_type="mp3", language="en", slow=False
 ):
   audio = gTTS(text=text, lang=language, slow=slow)
-  audio_file_path = os.path.join(
+  file_path = os.path.join(
     Path().absolute(),
     "weather_bot",
     "media",
-    "common_responses" if common else "dynamic_responses",
+    "common_responses",
     f"{file_name}.{file_type}",
   )
-  audio.save(audio_file_path)
-  return audio_file_path
+  audio.save(file_path)
+  return file_path
 
 
 if __name__ == "__main__":
