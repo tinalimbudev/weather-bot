@@ -71,15 +71,14 @@ def get_input(source, recognizer):
     return get_input(source, recognizer)
 
 
-def play_common_response_and_get_input(response_type, source, recognizer):
+def play_common_response_and_get_input(source, recognizer, response_type):
   play_common_response(response_type)
   return get_input(source, recognizer)
 
 
-def ask_name(source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_name, source, recognizer
-  )
+ask_name = partial(
+  play_common_response_and_get_input, response_type=ResponseTypes.ask_name
+)
 
 
 def get_expected_input(expected_inputs, source, recognizer, numerical=False):
