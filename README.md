@@ -3,8 +3,8 @@
 Ask this helpful Weather Bot to see if you need to grab your sunnies or an 
 umbrella before heading out.
 
-It can tell you about the current weather, the weather later today (for up to 
-12 hours), or the weather for this upcoming week (for up to 7 days).
+It can tell you about the current weather, the weather for later today (up to 
+12 hours), or the weather for this upcoming week (up to 7 days).
 
 ## Dependencies
 
