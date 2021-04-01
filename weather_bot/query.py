@@ -25,7 +25,7 @@ class QueryOptions(Enum):
   do_not_query_again = "no"
 
 
-def query_weather_bot(call_dt, data, source, recognizer):
+def query_weather_bot(source, recognizer):
   call_dt, data = get_weather_data()
   today_or_not = ask_if_today_or_different_day(source, recognizer)
 
