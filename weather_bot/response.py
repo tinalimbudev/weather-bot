@@ -82,21 +82,27 @@ def ask_name(source, recognizer):
   )
 
 
-def get_expected_input(expected_inputs, source, recognizer):
+def get_expected_input(expected_inputs, source, recognizer, numerical=False):
   input = get_input(source, recognizer)
 
-  if not any([i in input for i in expected_inputs]):
-    flag_invalid_input()
-    return get_expected_input(expected_inputs, source, recognizer)
-  else:
+  if numerical and any([i == input for i in expected_inputs]):
     return input
+  elif not numerical and any([i in input for i in expected_inputs]):
+    return input
+  else:
+    flag_invalid_input()
+    return get_expected_input(
+      expected_inputs, source, recognizer, numerical=numerical
+    )
 
 
 def play_common_response_and_get_expected_input(
-  response_type, expected_inputs, source, recognizer
+  response_type, expected_inputs, source, recognizer, numerical=False
 ):
   play_common_response(response_type)
-  return get_expected_input(expected_inputs, source, recognizer)
+  return get_expected_input(
+    expected_inputs, source, recognizer, numerical=numerical
+  )
 
 
 def ask_if_today_or_different_day(source, recognizer):
@@ -127,6 +133,7 @@ def ask_how_many_hours(source, recognizer):
     [str(i) for i in range(1, 13)],
     source,
     recognizer,
+    numerical=True,
   )
 
 
@@ -136,6 +143,7 @@ def ask_how_many_days(source, recognizer):
     [str(i) for i in range(1, 8)],
     source,
     recognizer,
+    numerical=True,
   )
 
 
