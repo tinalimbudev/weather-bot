@@ -5,16 +5,6 @@ from api import (
   extract_weather_data_for_later_time,
   get_weather_data,
 )
-from response import (
-  ask_how_many_days,
-  ask_how_many_hours,
-  ask_if_now_or_later,
-  ask_if_today_or_different_day,
-  missing_data,
-  report_current_weather,
-  report_weather_for_later_day,
-  report_weather_for_later_time,
-)
 
 
 class QueryOptions(Enum):
@@ -27,6 +17,13 @@ class QueryOptions(Enum):
 
 
 def query_weather_bot(source, recognizer):
+  from response import (
+    ask_how_many_days,
+    ask_how_many_hours,
+    ask_if_now_or_later,
+    ask_if_today_or_different_day,
+  )
+
   # TODO: In addition to just temperature, report additional weather data.
 
   call_dt, data = get_weather_data()
@@ -48,10 +45,14 @@ def query_weather_bot(source, recognizer):
 
 
 def query_current_weather(data):
+  from response import report_current_weather
+
   report_current_weather(data["current"]["temp"])
 
 
 def query_weather_for_later_time(call_dt, data, num_of_hours):
+  from response import missing_data, report_weather_for_later_time
+
   data = extract_weather_data_for_later_time(call_dt, data, num_of_hours)
 
   if data is None:
@@ -61,6 +62,8 @@ def query_weather_for_later_time(call_dt, data, num_of_hours):
 
 
 def query_weather_for_later_day(call_dt, data, num_of_days):
+  from response import missing_data, report_weather_for_later_day
+
   data = extract_weather_data_for_later_day(call_dt, data, num_of_days)
 
   if data is None:
