@@ -26,6 +26,8 @@ class QueryOptions(Enum):
 
 
 def query_weather_bot(source, recognizer):
+  # TODO: In addition to just temperature, report additional weather data.
+
   call_dt, data = get_weather_data()
   today_or_not = ask_if_today_or_different_day(source, recognizer)
 
