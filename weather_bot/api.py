@@ -36,3 +36,29 @@ def get_weather_data(lang="en", units="metric", city=Cities.london):
   data = requests.get(api_url).json()
 
   return call_dt, data
+
+
+def extract_weather_data_for_later_time(call_dt, data, num_of_hours):
+  if num_of_hours <= 12:
+    hourly_data = {d["dt"]: d for d in data["hourly"]}
+    requested_dt = call_dt + timedelta(hours=num_of_hours)
+    requested_timestamp = int(requested_dt.timestamp())
+
+    try:
+      return hourly_data[requested_timestamp]
+    except KeyError:
+      return None
+
+
+def extract_weather_data_for_later_day(call_dt, data, num_of_days):
+  if num_of_days <= 7:
+    daily_data = {
+      datetime.fromtimestamp(d["dt"]).replace(hour=0, minute=0): d
+      for d in data["daily"]
+    }
+    requested_dt = call_dt.replace(hour=0) + timedelta(days=num_of_days)
+
+    try:
+      return daily_data[requested_dt]
+    except KeyError:
+      return None
