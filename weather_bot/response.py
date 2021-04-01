@@ -8,6 +8,7 @@ from playsound import playsound
 import speech_recognition as sr
 
 from generate_audio_files import generate_audio_file_from_text
+from query import QueryOptions
 
 
 class ResponseTypes(Enum):
@@ -97,7 +98,7 @@ def play_common_response_and_get_expected_input(
 def ask_if_today_or_different_day(source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_if_today,
-    #[QueryOptions.today.value, QueryOptions.different_day.value],
+    [QueryOptions.today.value, QueryOptions.different_day.value],
     source,
     recognizer,
   )
@@ -106,7 +107,7 @@ def ask_if_today_or_different_day(source, recognizer):
 def ask_if_current_time_or_different(source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_if_current_time,
-    # [QueryOptions.current_time.value, QueryOptions.different_time.value],
+    [QueryOptions.current_time.value, QueryOptions.different_time.value],
     source,
     recognizer,
   )
@@ -133,7 +134,7 @@ def ask_how_many_days(source, recognizer):
 def ask_if_query_again(source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_if_query_again,
-    # [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
+    [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
     source,
     recognizer,
   )
