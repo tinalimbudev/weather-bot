@@ -44,32 +44,5 @@ def query_weather_bot(call_dt, data, audio_source, recognizer):
     query_weather_for_later_day(call_dt, data, int(num_of_days))
 
 
-def query_current_weather(data):
-  temp, feels_like = extract_weather_data(data["current"])
-  report_current_weather(temp, feels_like)
-
-
-def query_weather_for_later_time(call_dt, data, num_of_hours):
-  data = get_weather_data_for_later_time(
-    call_dt, data["hourly"], num_of_hours
-  )
-  temp, feels_like = extract_weather_data(data)
-  report_weather_for_later_time(temp, feels_like)
-
-
-def query_weather_for_later_day(call_dt, data, num_of_days):
-  data = get_weather_data_for_later_day(
-    call_dt, data["daily"], num_of_days
-  )
-  temp, feels_like = extract_weather_data(data)
-  temp_day = temp["day"]
-  temp_eve = temp["eve"]
-  feels_like_day = feels_like["day"]
-  feels_like_eve = feels_like["eve"]
-  report_weather_for_later_day(
-    temp_day, temp_eve, feels_like_day, feels_like_eve
-  )
-
-
 if __name__ == "__main__":
   run_weather_bot()
