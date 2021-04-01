@@ -179,6 +179,6 @@ def report_weather_for_later_time(temp):
 def report_weather_for_later_day(temp_day, temp_eve):
   respond_dynamically(
     f"The temperature on the day that you requested for will be {temp_day} "
-    f"degrees celcius in the day time and {temp_eve} degrees celcius in the "
+    f"degrees celcius in the day time, and {temp_eve} degrees celcius in the "
     f"evening."
   )
