@@ -86,7 +86,7 @@ def get_expected_input(expected_inputs, source, recognizer):
   input = get_input(source, recognizer)
 
   if not any([i in input for i in expected_inputs]):
-    invalid_input()
+    flag_invalid_input()
     return get_expected_input(expected_inputs, source, recognizer)
   else:
     return input
