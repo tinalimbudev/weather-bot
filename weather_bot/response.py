@@ -1,4 +1,13 @@
+from datetime import datetime
+import os
+
 from enum import Enum
+from functools import partial
+from pathlib import Path
+from playsound import playsound
+import speech_recognition as sr
+
+from generate_audio_files import generate_audio_file_from_text
 
 
 class ResponseTypes(Enum):
@@ -127,4 +136,38 @@ def ask_if_query_again(source, recognizer):
     # [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
     source,
     recognizer,
+  )
+
+
+def respond_dynamically(text):
+  # TODO: Make this work using tempfile instead.
+
+  file_name = f"temp_audio_file_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}"
+  file_path = generate_audio_file_from_text(text, file_name)
+  playsound(file_path)
+  os.remove(file_path)
+
+
+def greet(name):
+  respond_dynamically(f"Nice to meet you {name}!")
+
+
+def report_current_weather(temp):
+  respond_dynamically(
+    f"The current temperature is {temp} degrees celcius."
+  )
+
+
+def report_weather_for_later_time(temp):
+  respond_dynamically(
+    f"The temperature at the time that you requested for will be {temp} "
+    "degrees celcius."
+  )
+
+
+def report_weather_for_later_day(temp_day, temp_eve):
+  respond_dynamically(
+    f"The temperature on the day that you requested for will be {temp_day} "
+    f"degrees celcius in the day time and {temp_eve} degrees celcius in the "
+    f"evening."
   )
