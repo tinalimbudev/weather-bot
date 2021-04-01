@@ -57,6 +57,17 @@ def get_input(source, recognizer):
     return get_input(source, recognizer)
 
 
+def play_common_response_and_get_input(response_type, source, recognizer):
+  play_common_response(response_type)
+  return get_input(source, recognizer)
+
+
+def ask_name(source, recognizer):
+  return play_common_response_and_get_input(
+    ResponseTypes.ask_name, source, recognizer
+  )
+
+
 def get_expected_input(expected_inputs, source, recognizer):
   input = get_input(source, recognizer)
 
@@ -67,13 +78,53 @@ def get_expected_input(expected_inputs, source, recognizer):
     return input
 
 
-def play_common_response_and_get_input(response_type, source, recognizer):
-  play_common_response(response_type)
-  return get_input(source, recognizer)
-
-
 def play_common_response_and_get_expected_input(
   response_type, expected_inputs, source, recognizer
 ):
   play_common_response(response_type)
   return get_expected_input(expected_inputs, source, recognizer)
+
+
+def ask_if_today_or_different_day(source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_if_today,
+    #[QueryOptions.today.value, QueryOptions.different_day.value],
+    source,
+    recognizer,
+  )
+
+
+def ask_if_current_time_or_different(source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_if_current_time,
+    # [QueryOptions.current_time.value, QueryOptions.different_time.value],
+    source,
+    recognizer,
+  )
+
+
+def ask_how_many_hours(source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_how_many_hours,
+    # ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+    source,
+    recognizer,
+  )
+
+
+def ask_how_many_days(source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_how_many_days,
+    # ["1", "2", "3", "4", "5", "6", "7"],
+    source,
+    recognizer,
+  )
+
+
+def ask_if_query_again(source, recognizer):
+  return play_common_response_and_get_expected_input(
+    ResponseTypes.ask_if_query_again,
+    # [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
+    source,
+    recognizer,
+  )

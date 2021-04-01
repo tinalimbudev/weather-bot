@@ -20,57 +20,6 @@ class QueryOptions(Enum):
   do_not_query_again = "no"
 
 
-def ask_name(audio_source, recognizer):
-  return play_common_response_and_get_input(
-    ResponseTypes.ask_name, audio_source, recognizer
-  )
-
-
-def ask_today_or_not(audio_source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_today_or_not,
-    [QueryOptions.today.value, QueryOptions.different_day.value],
-    audio_source,
-    recognizer,
-  )
-
-
-def ask_current_or_not(audio_source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_current_or_not,
-    [QueryOptions.current_time.value, QueryOptions.different_time.value],
-    audio_source,
-    recognizer,
-  )
-
-
-def ask_how_many_hours(audio_source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_how_many_hours,
-    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-    audio_source,
-    recognizer,
-  )
-
-
-def ask_how_many_days(audio_source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_how_many_days,
-    ["1", "2", "3", "4", "5", "6", "7"],
-    audio_source,
-    recognizer,
-  )
-
-
-def ask_if_query_again(audio_source, recognizer):
-  return play_common_response_and_get_expected_input(
-    ResponseTypes.ask_if_query_again,
-    [QueryOptions.query_again.value, QueryOptions.do_not_query_again.value],
-    audio_source,
-    recognizer,
-  )
-
-
 def respond_dynamically(text):
   # TODO: Make this work using tempfile instead.
 
