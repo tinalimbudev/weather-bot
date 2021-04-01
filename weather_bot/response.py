@@ -106,7 +106,7 @@ def ask_if_current_time_or_different(source, recognizer):
 def ask_how_many_hours(source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_how_many_hours,
-    # ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+    [str(i) for i in range(1, 13)],
     source,
     recognizer,
   )
@@ -115,7 +115,7 @@ def ask_how_many_hours(source, recognizer):
 def ask_how_many_days(source, recognizer):
   return play_common_response_and_get_expected_input(
     ResponseTypes.ask_how_many_days,
-    # ["1", "2", "3", "4", "5", "6", "7"],
+    [str(i) for i in range(1, 8)],
     source,
     recognizer,
   )
