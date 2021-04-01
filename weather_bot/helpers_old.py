@@ -20,24 +20,6 @@ class QueryOptions(Enum):
   do_not_query_again = "no"
 
 
-def play_common_response(response_type):
-  file_path = os.path.join(
-    Path().absolute(),
-    "weather_bot",
-    "media",
-    "common_responses",
-    RESPONSE_FILES[response_type],
-  )
-  playsound(file_path)
-
-
-beg_pardon = partial(play_common_response, response_type=ResponseTypes.pardon)
-goodbye = partial(play_common_response, response_type=ResponseTypes.goodbye)
-hello = partial(play_common_response, response_type=ResponseTypes.hello)
-invalid_input = partial(
-  play_common_response, response_type=ResponseTypes.invalid_input
-)
-
 
 def play_common_response_and_get_input(response_type, audio_source, recognizer):
   play_common_response(response_type)
