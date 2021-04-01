@@ -26,23 +26,5 @@ def run_weather_bot():
     goodbye()
 
 
-def query_weather_bot(call_dt, data, audio_source, recognizer):
-  today_or_not = ask_today_or_not(audio_source, recognizer)
-
-  if QueryOptions.today.value in today_or_not:
-    current_or_not = ask_current_or_not(audio_source, recognizer)
-
-    if QueryOptions.current_time.value in current_or_not:
-      query_current_weather(data)
-
-    elif QueryOptions.different_time.value in current_or_not:
-      num_of_hours = ask_how_many_hours(audio_source, recognizer)
-      query_weather_for_later_time(call_dt, data, int(num_of_hours))
-
-  elif QueryOptions.different_day.value in today_or_not:
-    num_of_days = ask_how_many_days(audio_source, recognizer)
-    query_weather_for_later_day(call_dt, data, int(num_of_days))
-
-
 if __name__ == "__main__":
   run_weather_bot()
