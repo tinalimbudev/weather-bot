@@ -1,4 +1,4 @@
-# WEATHER BOT :sunny: :umbrella:
+# :sunny: WEATHER BOT :umbrella:
 
 Ask this helpful Weather Bot to see if you need to grab your sunnies or an 
 umbrella before heading out.
