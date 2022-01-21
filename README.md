@@ -17,3 +17,6 @@ Simply run the following command:
 ```python
 python weather_bot.py
 ```
+
+The Weather Bot will now greet you and ask you guiding questions. Follow along 
+and converse with it to get the infomation you need.
