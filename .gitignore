@@ -2,7 +2,7 @@
 .vscode
 
 # Virtual environment
-weather_bot_venv
+.venv
 
 # pycache
 __pycache__
