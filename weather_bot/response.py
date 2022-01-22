@@ -64,13 +64,19 @@ say_hello = partial(play_common_response, response_type=ResponseTypes.hello)
 
 
 def get_input(source, recognizer):
-  audio = recognizer.listen(source)
-
   try:
-    return recognizer.recognize_google(audio)
-  except sr.UnknownValueError:
-    beg_pardon()
-    return get_input(source, recognizer)
+    audio = recognizer.listen(source)
+
+    try:
+      return recognizer.recognize_google(audio)
+    except sr.UnknownValueError:
+      beg_pardon()
+      return get_input(source, recognizer)
+  except AttributeError:
+    print(type(source))
+    print(source)
+    print(type(recognizer))
+    print(recognizer)
 
 
 def play_common_response_and_get_input(source, recognizer, response_type):
@@ -93,7 +99,7 @@ def get_expected_input(source, recognizer, expected_inputs, numerical=False):
   else:
     flag_invalid_input()
     return get_expected_input(
-      expected_inputs, source, recognizer, numerical=numerical
+      source, recognizer, expected_inputs, numerical=numerical
     )
 
 
