@@ -43,7 +43,6 @@ RESPONSE_FILES = {
 def play_common_response(response_type):
   file_path = os.path.join(
     Path().absolute(),
-    "weather_bot",
     "media",
     "common_responses",
     RESPONSE_FILES[response_type],
